@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct st {
+    int id;
+    char name [10];
+    int subject ,grade[3];
+};
+struct node {
+    struct st data;
+    struct node* next;
+    struct node* prev;
+};
+struct node* head;
+struct node* tail;
+struct node* create ();
+void insert (int location);
+struct st getDataFromUser();
+void deleteAll();
+void addNode ();
+int main (){
+    int opration;
+    int location=-1;
+    int flag = 0;
+    do{
+        printf(" to add new student enter 1 \n to add student in location enter 2 \n and 3 for end program and print \n or 4 to delete all records and end the program \n");
+        scanf("%d",&opration);
+        if(opration==1){
+            insert(location);
+        }else if (opration == 2){
+            printf("\n enter the location : ");
+            scanf("%d",&location);
+            insert(location-1);
+        }else if(opration==3){
+            flag = 1;
+        }else if(opration=4){
+            deleteAll();
+            flag=1;
+        }
+
+    }while(flag == 0);
+
+    print();
+
+return 0;
+}
+void insert(int location){
+    int loopHelper = 0;
+    struct node* newNode;
+    struct node* temp;
+    if(location==-1){
+        if(!head){
+            addNode();
+        }else {
+           newNode= create();
+           tail->next=newNode;
+           tail=newNode;
+        }
+    }
+    else if(location==0){
+        addNode();
+    }else{
+        temp = head;
+        while(loopHelper>=location){
+                if(temp->next!=NULL){
+                    temp=temp->next;
+                }
+        }
+       newNode = create();
+       if(temp->next){
+            newNode->next=temp->next;
+       }else {
+            tail=newNode;
+       }
+       temp->next=newNode;
+    }
+}
+void addNode(noid){
+    struct node* newNode = create();
+    if(newNode){
+        if (head==NULL){
+            head=newNode;
+            tail=newNode;
+        }else{
+            head->prev=newNode;
+            newNode->next=head;
+            head=newNode;
+        }
+    }
+}
+struct st getDataFromUser(){
+        int loopHealper = 0;
+        struct st newSt;
+      //  printf(" enter student id : ");
+       // scanf("%d",&newSt.id);
+        printf("\n enter student name : " );
+        scanf("%s",newSt.name);
+       // printf("\n enter the subject number : ");
+        //scanf("%d",&newSt.subject);
+        /*
+       for (loopHealper;loopHealper<=2;loopHealper++){
+            printf("\n enter the grade %d : ",loopHealper+1);
+            scanf("%d",newSt.grade[loopHealper]);
+        }
+         */
+
+        return newSt;
+
+};
+struct node* create(){
+    struct node* n = malloc(sizeof(struct node));
+    if(n){
+        struct st student = getDataFromUser();
+        n->data=student;
+    }else{
+        printf("sorry we can't allocate new student");
+    }
+    return n;
+}
+void deleteAll (){
+    struct node* temp;
+    temp=head;
+    while(temp){
+        head=temp->next;
+        free(temp);
+        temp=head;
+
+    }
+}
+
+void print(){
+    struct node* temp;
+    temp=head;
+    while(temp){
+        printf("%s\n",temp->data.name);
+        temp=temp->next;
+    }
+    deleteAll();
+}
