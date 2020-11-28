@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+// todo : add error handling , sound for unexpexted inputs , add validator for all inputs 
 struct st {
     int id;
     char name [10];
