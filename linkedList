@@ -21,6 +21,7 @@ struct node* create ();
 void insert (int location);
 struct st getDataFromUser();
 void deleteAll();
+void print();
 void searchById();
 void searchByName();
 void addNode ();
@@ -28,9 +29,9 @@ void addNode ();
 int main (){
     int opration;
     int location=-1;
-    int idForSearch;
     int flag = 0;
     do{
+        // todo: change printf to list (to be more friendly to the users)
         printf(" to add new student enter 1 \n to add student in location enter 2 \n to search by id 3 \n to search by name 4 \n and 5 for end program and print \n or 6 to delete all records and end the program \n");
         scanf("%d",&opration);
         if(opration==1){
@@ -69,7 +70,7 @@ void insert(int location){
            tail->next=newNode;
            tail=newNode;
         }
-    }
+    }// todo : recheck the logic for location 0 and other locations (the first item removed)
     else if(location==0){
         addNode();
     }else{
@@ -88,7 +89,7 @@ void insert(int location){
        temp->next=newNode;
     }
 }
-void addNode(noid){
+void addNode(){
     struct node* newNode = create();
     if(newNode){
         if (head==NULL){
@@ -102,7 +103,9 @@ void addNode(noid){
     }
 }
 struct st getDataFromUser(){
-        int loopHealper = 0;
+    // todo : get the grades from user --- this code makes error
+
+       // int loopHealper = 0;
         struct st newSt;
         printf(" enter student id : ");
         scanf("%d",&newSt.id);
@@ -175,6 +178,7 @@ void searchById(){
 }
 
 void searchByName(){
+// todo : this function not working as expected
     char ar[10];
     printf("\n enter the name : ");
     scanf("%s",ar);
