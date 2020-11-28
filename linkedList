@@ -7,13 +7,16 @@ struct st {
     char name [10];
     int subject ,grade[3];
 };
+//---------------------------
 struct node {
     struct st data;
     struct node* next;
     struct node* prev;
 };
+//--------------------------
 struct node* head;
 struct node* tail;
+//---------- Global Val
 struct node* create ();
 void insert (int location);
 struct st getDataFromUser();
@@ -21,6 +24,7 @@ void deleteAll();
 void searchById();
 void searchByName();
 void addNode ();
+//---------------- define Functions
 int main (){
     int opration;
     int location=-1;
@@ -139,9 +143,10 @@ void deleteAll (){
 void print(){
     struct node* temp;
     temp=head;
-    while(temp){
-        printf("ID  | Name   |  subject   |   grade 1  |  grade 2  |  grade 3   \n");
+      printf("ID  | Name   |  subject   |   grade 1  |  grade 2  |  grade 3   \n");
         printf("-------------------------------------------------------------------------\n");
+    while(temp){
+
         printf("%d  | %s\n",temp->data.id,temp->data.name);
 
         temp=temp->next;
@@ -154,9 +159,11 @@ void searchById(){
     int id ;
     printf ("\n enter the ID : ");
     scanf("%d",&id);
-    while(flag = 0&&temp!=NULL){
+    while(flag == 0 && temp){
         if (temp->data.id==id){
-            printf("id = %d \n name = %s \n",temp->data.id,temp->data.name);
+            printf("ID  | Name   |  subject   |   grade 1  |  grade 2  |  grade 3   \n");
+            printf("-------------------------------------------------------------------------\n");
+            printf("%d  | %s\n",temp->data.id,temp->data.name);
             flag =1;
         }
         temp=temp->next;
@@ -173,9 +180,11 @@ void searchByName(){
     scanf("%s",ar);
     struct node* temp = head ;
     int flag = 0 ;
-    while(flag = 0 && temp!=NULL){
+    while(flag == 0 && temp){
         if (temp->data.name==ar){
-            printf("id = %d \n name = %s \n",temp->data.id,temp->data.name);
+            printf("ID  | Name   |  subject   |   grade 1  |  grade 2  |  grade 3   \n");
+            printf("-------------------------------------------------------------------------\n");
+            printf("%d  | %s\n",temp->data.id,temp->data.name);
             flag =1;
         }
         temp=temp->next;
